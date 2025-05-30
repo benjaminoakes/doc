@@ -3,66 +3,63 @@ title: Pocket
 weight: 1
 ---
 
-## Import Methods
+## Importing from Pocket
 
-There are two ways to import your Pocket data into wallabag:
+Wallabag offers multiple ways to import your saved Pocket articles:
 
-1. [**CSV Converter Tool**](https://benjaminoakes.github.io/pocket-to-wallabag/) (simple, runs in your browser, no setup required)
-2. **Direct API Import** (requires developer setup)
+1. **Using the official Pocket API** (recommended if you have access and prefer a server-based method)
+2. **Using the CSV Converter Tool** (recommended if you want to avoid API setup or need an alternative--for example, if importing the Pocket ZIP file on a mobile device)
 
-## Method 1: CSV Converter Tool
+No matter which method you choose, our goal is to make the transition from Pocket to Wallabag as smooth as possible. There are millions of Pocket users looking for a new home, and we want to offer flexible tools to help everyone migrate successfully.
 
-The easiest way to import your Pocket data is using the [**Pocket to Wallabag Converter**](https://benjaminoakes.github.io/pocket-to-wallabag/) tool.
+## Option 1: Import via Pocket API
 
-This method is particularly useful for users who want a simple, straightforward import process and want to avoid API setup complexity.  It achieves this by converting from Pocket format to Instapaper format.
+To use the Pocket API method, you need to create an application on their developer site.
 
-### Features
+- Create a new application [on the developer website](https://getpocket.com/developer/apps/new)
+- Fill in the required fields:
+  - Application name
+  - Description
+  - Permissions: **retrieve**
+  - Platform: **web**
+- Accept the terms and submit your application
 
-- **No API setup required** - works with Pocket's standard export
-- **100% client-side processing** - your data never leaves your device
-- **Open source** - fully auditable code
+Pocket will give you a **Consumer Key** (e.g., `49961-985e4b92fe21fe4c78d682c1`). Enter this key in the `pocket_consumer_key` field in the Wallabag `Config` menu.
+
+Then:
+
+1. Go to `Import` in the Wallabag menu
+2. Click `Import contents` under the Pocket section
+3. Click `Connect to Pocket and import data`
+4. Authorize Wallabag to access your Pocket account
+5. Wait while your data is imported (may take time depending on volume)
+
+---
+
+## Option 2: Import via CSV Converter Tool
+
+The easiest alternative is to use the [**Pocket to Wallabag Converter**](https://benjaminoakes.github.io/pocket-to-wallabag/) tool.
+
+This method is especially useful if:
+
+- The new built-in Pocket CSV importer isn't available or doesn't work for your situation
+- You’re on shared hosting or can’t update your Wallabag instance to a version that has the new Pocket CSV importer
+- You want to skip API setup
+- ZIP file management is awkward (e.g. on Android/iOS)
 
 ### How to use the converter
 
 1. **Export from Pocket:**
-   - Go to Pocket Settings → Export
-   - Wait for the ZIP file to be generated and emailed to you
-   - Download your data as a ZIP file
+   - Go to Pocket → Settings → Export
+   - Request your data export (you’ll receive a ZIP by email)
+   - Download the ZIP file
 
 2. **Convert the data:**
    - Visit the [Pocket to Wallabag Converter](https://benjaminoakes.github.io/pocket-to-wallabag/)
-   - Choose your Pocket export ZIP file
-   - Save the converted, Instapaper-formatted CSV file
+   - Upload your Pocket ZIP file
+   - Download the generated CSV in Instapaper format
 
-3. **Import to Wallabag:**
-   - In your Wallabag instance, go to Import → Instapaper
+3. **Import into Wallabag:**
+   - Go to Import → **Instapaper**
    - Upload the converted CSV file
-   - Your articles will be imported with proper folders and tags
-
-## Method 2: Direct API Import
-
-### Create a new application on Pocket
-
-To import your data from Pocket using the API, you need to
-create a new application on their developer website to continue.
-
--   Create a new application [on the developer
-    website](https://getpocket.com/developer/apps/new)
--   Fill in the required fields: application name, application
-    description, permissions (only **retrieve**), platform (**web**),
-    accept the terms of service and submit your new application
-
-Pocket will give you a **Consumer Key** (for example,
-49961-985e4b92fe21fe4c78d682c1). You need to configure the
-`pocket_consumer_key` in the `Config` menu.
-
-Now, all is fine to migrate from Pocket.
-
-### Import your data into wallabag
-
-Click on `Import` link in the menu, on `Import contents` in Pocket
-section and then on `Connect to Pocket and import data`.
-
-You need to authorize wallabag to interact with your Pocket account.
-Your data will be imported. Data import can be a demanding process for
-your server.
+   - Wallabag will import your articles with folders and tags
